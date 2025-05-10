@@ -1437,6 +1437,7 @@ body[data-theme='dark'] .hljs-deletion {
   z-index: 9998;
   display: none;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .chat-window-wrapper .chat-window .chat-layout {

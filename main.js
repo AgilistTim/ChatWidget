@@ -15,6 +15,18 @@ window.addEventListener('load', () => {
     document.body.appendChild(overlay);
   }
 
+  // Set up click handler on overlay
+  const overlay = document.getElementById('chat-overlay');
+  overlay.addEventListener('click', (event) => {
+    // Only close if the click is directly on the overlay
+    if (event.target === overlay) {
+      const chatToggleButton = document.querySelector('#n8n-chat-widget-2 .chat-window-toggle');
+      if (chatToggleButton) {
+        chatToggleButton.click();
+      }
+    }
+  });
+
   initChat(sessionId); // Function to create chat instance
   setupToggleButton(); // Function to set Toggle button
   refreshButton(getInitialMessages); // Function to trigger getInitialMessages()
