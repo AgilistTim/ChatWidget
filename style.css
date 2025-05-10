@@ -1186,7 +1186,7 @@ body[data-theme='dark'] .hljs-deletion {
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background: url('https://github.com/RickCBA/widget-centered/blob/8b12518cc4d3732b69f9b179b4e5973e992dd1fd/Alan%20avatar.jpg?raw=true')
+  background: url('https://cdn.jsdelivr.net/gh/RickCBA/widget-centered@8b12518cc4d3732b69f9b179b4e5973e992dd1fd/Alan%20avatar.jpg')
     no-repeat center center;
   background-size: cover;
   object-position: center;
@@ -1280,7 +1280,7 @@ body[data-theme='dark'] .hljs-deletion {
 }
 
 #n8n-chat-widget-2 .chat-window-wrapper .chat-window-toggle:hover {
-  background-image: url('https://github.com/RickCBA/widget-centered/blob/main/Alan%20Toggle%20Button2.png?raw=true');
+  background-image: url('https://cdn.jsdelivr.net/gh/RickCBA/widget-centered@main/Alan%20Toggle%20Button2.png');
   /* Slight lift on hover */
   transform: translateY(5px);
   scale: 1.05;
@@ -1289,7 +1289,7 @@ body[data-theme='dark'] .hljs-deletion {
 }
 
 #n8n-chat-widget-2 .chat-window-wrapper .chat-window-toggle:active {
-  background-image: url('https://github.com/RickCBA/widget-centered/blob/main/Alan%20Toggle%20Button2.png?raw=true');
+  background-image: url('https://cdn.jsdelivr.net/gh/RickCBA/widget-centered@main/Alan%20Toggle%20Button2.png');
 }
 
 #n8n-chat-widget-2 .chat-message-typing .chat-message-typing-body {
@@ -1306,7 +1306,7 @@ body[data-theme='dark'] .hljs-deletion {
 
 #n8n-chat-widget-2 .chat-window-wrapper .chat-window-toggle svg:not(:root) {
   border-radius: 50%;
-  background: url('https://github.com/RickCBA/widget-centered/blob/main/1image.png?raw=true')
+  background: url('https://cdn.jsdelivr.net/gh/RickCBA/widget-centered@main/1image.png')
     no-repeat center center;
   background-size: cover;
   margin-bottom: 48px;

@@ -23,6 +23,9 @@ export function setupToggleButton() {
   });
   document.body.appendChild(loadingAnimation);
 
+  // Get the base URL for assets
+  const baseUrl = window.location.origin;
+
   Object.assign(chatToggleButton.style, {
     background: 'linear-gradient(to left, #F9B04B, #C97F01, #A05A00)',
     width: '220px',
@@ -36,7 +39,7 @@ export function setupToggleButton() {
   });
   chatToggleButton.innerHTML = `
     <span style="margin-right: 0.5em; font-size: 1em;">Make an Enquiry</span>
-    <img src="assets/chat-message-icon-svg.svg" alt="Chat Icon" style="width: 1.5em; height: 1.5em;" />
+    <img src="${baseUrl}/assets/chat-message-icon-svg.svg" alt="Chat Icon" style="width: 1.5em; height: 1.5em;" />
   `;
 
   chatToggleButton.addEventListener('click', () => {
@@ -49,7 +52,7 @@ export function setupToggleButton() {
     if (chatOpened) {
       centerChatWindow(); // Function to center chat window when chatOpened is true
       Object.assign(chatToggleButton.style, {
-        backgroundImage: "url('assets/delete.png')",
+        backgroundImage: `url('${baseUrl}/assets/delete.png')`,
         width: '55px',
         height: '55px',
         border: '5px solid #C97F01',
@@ -75,7 +78,7 @@ export function setupToggleButton() {
       });
       chatToggleButton.innerHTML = `
         <span style="margin-right: 10px;">Make an Enquiry</span>
-        <img src="assets/chat-message-icon-svg.svg" alt="Chat Icon" style="width: 30px; height: 30px;" />
+        <img src="${baseUrl}/assets/chat-message-icon-svg.svg" alt="Chat Icon" style="width: 30px; height: 30px;" />
       `;
     }
   });
