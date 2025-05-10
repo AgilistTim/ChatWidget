@@ -1423,6 +1423,7 @@ body[data-theme='dark'] .hljs-deletion {
   max-width: 500px !important;
   height: auto !important;
   z-index: 10000 !important;
+  padding-bottom: 20px !important;
 }
 
 /* ===== New: Overlay styling ===== */
@@ -1615,19 +1616,29 @@ body[data-theme='dark'] .hljs-deletion {
 
 /* 480px Media Queries */
 @media (max-width: 480px) {
+  .chat-window-wrapper .chat-window {
+    height: 85vh !important; /* Limit height on mobile */
+    max-height: 600px !important; /* Prevent excessive height */
+    overflow: hidden;
+    border-radius: 16px;
+    position: relative;
+  }
+  
   .chat-window-wrapper .chat-window .chat-layout {
-    padding: 35px 10px;
+    padding: 35px 10px 60px 10px; /* Increased bottom padding */
+    max-height: 85vh; /* Limit height to prevent overflow on small screens */
   }
 
   .centered-chat {
     position: fixed;
-    top: 50%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 95%;
     max-width: 100%;
     height: auto;
     z-index: 10000;
+    padding-bottom: 30px !important;
   }
 
   #n8n-chat-widget-2 .chat-message.chat-message-from-bot::before {
@@ -1644,7 +1655,7 @@ body[data-theme='dark'] .hljs-deletion {
 
   #n8n-chat-widget-2 .chat-footer {
     border-width: 2px;
-    margin-bottom: 40%;
+    margin-bottom: 60px;
   }
 
   #n8n-chat-widget-2 .chat-message {
@@ -1666,10 +1677,12 @@ body[data-theme='dark'] .hljs-deletion {
   .chat-inputs[data-v-2a7fb1c3] {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+    margin-bottom: 20px; /* Add space at bottom of inputs */
+    position: relative;
   }
   .chat-inputs-controls[data-v-2a7fb1c3] {
     right: 0.5rem;
-    bottom: 0.5rem;
+    bottom: 0.6rem;
   }
   .chat-inputs textarea[data-v-2a7fb1c3] {
     font-size: 0.95rem;
@@ -1683,6 +1696,7 @@ body[data-theme='dark'] .hljs-deletion {
   }
   .chat-messages-list {
     font-size: larger;
+    padding-bottom: 24px;
   }
 
   #n8n-chat-widget-2 .chat-window-toggle {
@@ -1708,13 +1722,20 @@ body[data-theme='dark'] .hljs-deletion {
     overflow: visible;
     margin-bottom: 10%;
   }
+
+  /* Make sure chat body doesn't overflow */
+  .chat-layout .chat-body {
+    overflow-y: auto;
+    max-height: calc(85vh - 180px);
+    padding-bottom: 16px;
+  }
 }
 
 /* 320px Media Queries */
 @media (max-width: 320px) {
   #n8n-chat-widget-2 .chat-footer {
     border-width: 2px;
-    margin-bottom: 45%;
+    margin-bottom: 70px;
   }
 
   #n8n-chat-widget-2 .chat-message {
