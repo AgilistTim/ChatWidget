@@ -1160,8 +1160,8 @@ body[data-theme='dark'] .hljs-deletion {
   width: 60px;
   height: 100%;
   border-top-left-radius: 0;
-  border-top-right-radius: 29px; /* 32px - 3px border */
-  border-bottom-right-radius: 29px; /* 32px - 3px border */
+  border-top-right-radius: 32px; /* Match the exact max radius */
+  border-bottom-right-radius: 32px; /* Match the exact max radius */
   border-bottom-left-radius: 0;
   cursor: pointer;
   transition: background var(--chat--transition-duration) ease;
@@ -1176,6 +1176,8 @@ body[data-theme='dark'] .hljs-deletion {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  /* Fix to eliminate edge pixels */
+  transform: translateX(0.5px); /* Slight shift to cover any gap */
 }
 
 #n8n-chat-widget-2 .chat-footer button:hover {
@@ -1197,13 +1199,14 @@ body[data-theme='dark'] .hljs-deletion {
 @media (max-width: 480px) {
   #n8n-chat-widget-2 .chat-footer button {
     width: 50px;
-    border-radius: 0 29px 29px 0; /* Match the outer border radius minus border width */
+    border-radius: 0 32px 32px 0; /* Match the exact max radius */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     margin: 0;
     padding: 0;
+    transform: translateX(0.5px); /* Slight shift to cover any gap */
   }
 }
 
@@ -1749,7 +1752,7 @@ body[data-theme='dark'] .hljs-deletion {
 
   #n8n-chat-widget-2 .chat-footer button {
     width: 50px;
-    border-radius: 0 29px 29px 0; /* Match the outer border radius minus border width */
+    border-radius: 0 32px 32px 0; /* Match the exact max radius */
     display: flex;
     align-items: center;
     justify-content: center;
