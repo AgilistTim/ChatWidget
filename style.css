@@ -1136,6 +1136,11 @@ body[data-theme='dark'] .hljs-deletion {
   max-width: 100%;
   overflow: visible;
   margin-bottom: 10%;
+  display: flex;
+  align-items: center;
+  min-height: 60px; /* Match the textarea height */
+  box-sizing: border-box;
+  position: relative;
 }
 
 /* Chat body styling */
@@ -1211,21 +1216,18 @@ body[data-theme='dark'] .hljs-deletion {
   padding-right: calc(
     0.8rem + var(--controls-count, 1) * var(--chat--textarea--height)
   );
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  min-height: var(--chat--textarea--height);
+  height: 60px; /* Fixed height to match button */
+  min-height: 60px; /* Fixed min-height */
   background: transparent;
   resize: none;
   color: var(--input-text);
-  padding: 0.8rem;
+  padding: 20px 0.8rem; /* Vertical padding to center text */
   outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  line-height: 1;
+  line-height: 1.2; /* Better line height for centering */
   overflow-y: hidden;
 }
 
@@ -1240,6 +1242,7 @@ body[data-theme='dark'] .hljs-deletion {
   color: var(--button-text);
   border: none;
   width: 60px;
+  height: 60px; /* Match textarea height */
   border-top-left-radius: 0px;
   border-top-right-radius: 32px;
   border-bottom-right-radius: 32px;
@@ -1248,9 +1251,12 @@ body[data-theme='dark'] .hljs-deletion {
   transition: background var(--chat--transition-duration) ease;
   scale: 1.02;
   position: absolute;
-  top: 0%;
-  right: 0%;
-  bottom: 0%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #n8n-chat-widget-2 .chat-footer button:hover {
@@ -1656,6 +1662,7 @@ body[data-theme='dark'] .hljs-deletion {
   #n8n-chat-widget-2 .chat-footer {
     border-width: 2px;
     margin-bottom: 60px;
+    min-height: 54px; /* Match textarea mobile height */
   }
 
   #n8n-chat-widget-2 .chat-message {
@@ -1686,8 +1693,12 @@ body[data-theme='dark'] .hljs-deletion {
   }
   .chat-inputs textarea[data-v-2a7fb1c3] {
     font-size: 0.95rem;
-    padding: 0.6rem 0.8rem;
+    padding: 18px 0.8rem; /* Adjusted padding for vertical alignment */
+    height: 54px; /* Slightly smaller height for mobile */
+    min-height: 54px;
+    line-height: 1.2;
     overflow-y: hidden;
+    box-sizing: border-box;
   }
   .chat-button {
     width: 90vw;
@@ -1728,6 +1739,13 @@ body[data-theme='dark'] .hljs-deletion {
     overflow-y: auto;
     max-height: calc(85vh - 180px);
     padding-bottom: 16px;
+  }
+
+  /* Add button height for mobile */
+  #n8n-chat-widget-2 .chat-footer button,
+  #n8n-chat-widget-2 .chat-footer button.chat-input-send-button {
+    height: 54px !important; /* Match mobile textarea height */
+    width: 54px !important;
   }
 }
 
