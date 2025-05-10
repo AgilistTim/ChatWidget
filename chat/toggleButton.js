@@ -42,10 +42,12 @@ export function setupToggleButton() {
   chatToggleButton.addEventListener('click', () => {
     manualClicked = true;
     chatOpened = !chatOpened;
-    // overlay.style.display = chatOpened ? 'block' : 'none';
+    
+    // Toggle overlay visibility
+    overlay.style.display = chatOpened ? 'block' : 'none';
 
     if (chatOpened) {
-      // centerChatWindow(); // Function to center chat window chatOpened is true
+      centerChatWindow(); // Function to center chat window when chatOpened is true
       Object.assign(chatToggleButton.style, {
         backgroundImage: "url('assets/delete.png')",
         width: '55px',
