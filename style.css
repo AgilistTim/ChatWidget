@@ -773,6 +773,7 @@ body[data-theme='dark'] .hljs-deletion {
   justify-content: center;
   transition: color var(--chat--transition-duration) ease;
   padding: 0;
+  overflow: hidden;
 }
 
 .chat-input-send-button svg[data-v-2a7fb1c3] {
@@ -780,6 +781,8 @@ body[data-theme='dark'] .hljs-deletion {
   width: 24px;
   height: 24px;
   margin: 0 auto;
+  position: relative;
+  right: -1px;
 }
 
 .chat-input-send-button[data-v-2a7fb1c3]:hover,
@@ -1142,6 +1145,7 @@ body[data-theme='dark'] .hljs-deletion {
   max-width: 100%;
   overflow: hidden;
   margin-bottom: 10%;
+  position: relative;
 }
 
 /* Chat body styling */
@@ -1259,6 +1263,8 @@ body[data-theme='dark'] .hljs-deletion {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  padding: 0 14px 0 10px;
 }
 
 #n8n-chat-widget-2 .chat-footer button:hover {
@@ -1442,6 +1448,7 @@ body[data-theme='dark'] .hljs-deletion {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 9998;
   display: none;
   transition: all 0.3s ease;
@@ -1668,7 +1675,8 @@ body[data-theme='dark'] .hljs-deletion {
   }
 
   .chat-overlay {
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
   .chat-inputs[data-v-2a7fb1c3] {
     padding-left: 0.5rem;
@@ -1714,6 +1722,7 @@ body[data-theme='dark'] .hljs-deletion {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
   
   .chat-input-send-button[data-v-2a7fb1c3] {
@@ -1723,12 +1732,15 @@ body[data-theme='dark'] .hljs-deletion {
     align-items: center;
     justify-content: center;
     padding: 0;
+    overflow: hidden;
   }
   
   .chat-input-send-button svg[data-v-2a7fb1c3] {
     width: 20px;
     height: 20px;
     margin: 0 auto;
+    position: relative;
+    right: -1px;
   }
 }
 
