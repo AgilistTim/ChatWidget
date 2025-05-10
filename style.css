@@ -782,7 +782,8 @@ body[data-theme='dark'] .hljs-deletion {
   height: 24px;
   margin: 0 auto;
   position: relative;
-  right: -1px;
+  right: -2px;
+  display: block;
 }
 
 .chat-input-send-button[data-v-2a7fb1c3]:hover,
@@ -1138,6 +1139,7 @@ body[data-theme='dark'] .hljs-deletion {
   display: none;
 }
 
+/* Updated chat footer container */
 #n8n-chat-widget-2 .chat-footer {
   background: rgba(255, 255, 255, 0.9);
   border: 3px solid var(--button-bg);
@@ -1146,6 +1148,63 @@ body[data-theme='dark'] .hljs-deletion {
   overflow: hidden;
   margin-bottom: 10%;
   position: relative;
+  font-size: 0; /* Eliminate whitespace between elements */
+  box-sizing: border-box;
+}
+
+/* Updated send button styling */
+#n8n-chat-widget-2 .chat-footer button {
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  width: 60px;
+  height: 100%;
+  border-top-left-radius: 0;
+  border-top-right-radius: 29px; /* 32px - 3px border */
+  border-bottom-right-radius: 29px; /* 32px - 3px border */
+  border-bottom-left-radius: 0;
+  cursor: pointer;
+  transition: background var(--chat--transition-duration) ease;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#n8n-chat-widget-2 .chat-footer button:hover {
+  background: var(--secondary-lite);
+}
+
+/* Updated SVG styling */
+.chat-input-send-button svg[data-v-2a7fb1c3] {
+  min-width: fit-content;
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+  position: relative;
+  right: -2px; /* Slightly more shift to center the triangle */
+  display: block;
+}
+
+/* Mobile updated style */
+@media (max-width: 480px) {
+  #n8n-chat-widget-2 .chat-footer button {
+    width: 50px;
+    border-radius: 0 29px 29px 0; /* Match the outer border radius minus border width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 /* Chat body styling */
@@ -1241,34 +1300,6 @@ body[data-theme='dark'] .hljs-deletion {
 .chat-inputs textarea::-webkit-input-placeholder {
   color: #525252 !important;
   padding: 10px;
-}
-
-/* Send button styling */
-#n8n-chat-widget-2 .chat-footer button {
-  background: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  width: 60px;
-  height: 100%;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 32px;
-  border-bottom-right-radius: 32px;
-  border-bottom-left-radius: 0px;
-  cursor: pointer;
-  transition: background var(--chat--transition-duration) ease;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  padding: 0 14px 0 10px;
-}
-
-#n8n-chat-widget-2 .chat-footer button:hover {
-  background: var(--secondary-lite);
 }
 
 /* Toggle styling with an image */
@@ -1718,11 +1749,13 @@ body[data-theme='dark'] .hljs-deletion {
 
   #n8n-chat-widget-2 .chat-footer button {
     width: 50px;
-    border-radius: 0 32px 32px 0;
+    border-radius: 0 29px 29px 0; /* Match the outer border radius minus border width */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    margin: 0;
+    padding: 0;
   }
   
   .chat-input-send-button[data-v-2a7fb1c3] {
