@@ -723,22 +723,25 @@ body[data-theme='dark'] .hljs-deletion {
   flex-wrap: wrap;
 }
 .chat-inputs textarea[data-v-2a7fb1c3] {
-  font-family: 'Boxly', sans-serif !important;
-  font-size: 0.95rem;
+  font-family: 'Boxly', sans-serif;
+  font-size: inherit;
   width: 100%;
-  border: var(--chat--input--border, 0);
-  border-radius: var(--chat--input--border-radius, 0);
-  padding: 0.6rem 0.8rem;
+  border: none;
   padding-right: calc(
-    2rem + var(--controls-count, 1) * var(--chat--textarea--height)
+    0.8rem + var(--controls-count, 1) * var(--chat--textarea--height)
   );
-  min-height: var(--chat--textarea--height);
-  max-height: var(--chat--textarea--max-height, var(--chat--textarea--height));
-  height: 100%;
-  background: var(--chat--input--background, white);
-  resize: var(--chat--textarea--resize, none);
-  color: var(--chat--input--text-color, initial);
+  height: 60px; /* Fixed height to match button */
+  min-height: 60px; /* Fixed min-height */
+  background: transparent;
+  resize: none;
+  color: var(--input-text);
+  padding: 0 0.8rem; /* Horizontal padding only */
   outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  line-height: 60px; /* Match height for perfect vertical centering */
   overflow-y: hidden;
 }
 
@@ -1221,19 +1224,27 @@ body[data-theme='dark'] .hljs-deletion {
   background: transparent;
   resize: none;
   color: var(--input-text);
-  padding: 20px 0.8rem; /* Vertical padding to center text */
+  padding: 0 0.8rem; /* Horizontal padding only */
   outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  line-height: 1.2; /* Better line height for centering */
+  line-height: 60px; /* Match height for perfect vertical centering */
   overflow-y: hidden;
 }
 
-.chat-inputs textarea::-webkit-input-placeholder {
-  color: #525252 !important;
-  padding: 10px;
+/* Mobile specific textarea styles */
+@media (max-width: 480px) {
+  .chat-inputs textarea[data-v-2a7fb1c3] {
+    font-size: 0.95rem;
+    padding: 0 0.8rem; /* Horizontal padding only */
+    height: 54px; /* Slightly smaller height for mobile */
+    min-height: 54px;
+    line-height: 54px; /* Same as height for vertical alignment */
+    overflow-y: hidden;
+    box-sizing: border-box;
+  }
 }
 
 /* Send button styling */
@@ -1747,6 +1758,14 @@ body[data-theme='dark'] .hljs-deletion {
     height: 54px !important; /* Match mobile textarea height */
     width: 54px !important;
   }
+
+  /* Mobile placeholder styles */
+  .chat-inputs textarea::-webkit-input-placeholder,
+  .chat-inputs textarea::-moz-placeholder,
+  .chat-inputs textarea:-ms-input-placeholder,
+  .chat-inputs textarea::placeholder {
+    line-height: 54px; /* Match mobile textarea height */
+  }
 }
 
 /* 320px Media Queries */
@@ -1772,5 +1791,40 @@ body[data-theme='dark'] .hljs-deletion {
     transform: translateY(-50%);
     bottom: 0.9rem;
     right: 1rem;
+  }
+}
+
+.chat-inputs textarea::-webkit-input-placeholder {
+  color: #525252 !important;
+  line-height: 60px; /* Match textarea height */
+  vertical-align: middle;
+}
+
+/* Add other browser-specific placeholder selectors */
+.chat-inputs textarea::-moz-placeholder {
+  color: #525252 !important;
+  line-height: 60px; /* Match textarea height */
+  vertical-align: middle;
+}
+
+.chat-inputs textarea:-ms-input-placeholder {
+  color: #525252 !important;
+  line-height: 60px; /* Match textarea height */
+  vertical-align: middle;
+}
+
+.chat-inputs textarea::placeholder {
+  color: #525252 !important;
+  line-height: 60px; /* Match textarea height */
+  vertical-align: middle;
+}
+
+/* Mobile placeholder styles */
+@media (max-width: 480px) {
+  .chat-inputs textarea::-webkit-input-placeholder,
+  .chat-inputs textarea::-moz-placeholder,
+  .chat-inputs textarea:-ms-input-placeholder,
+  .chat-inputs textarea::placeholder {
+    line-height: 54px; /* Match mobile textarea height */
   }
 }
