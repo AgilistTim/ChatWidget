@@ -1225,6 +1225,7 @@ body[data-theme='dark'] .hljs-deletion {
   justify-content: center;
   position: relative;
   line-height: 1;
+  overflow-y: hidden;
 }
 
 .chat-inputs textarea::-webkit-input-placeholder {
