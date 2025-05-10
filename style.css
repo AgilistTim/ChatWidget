@@ -1133,7 +1133,7 @@ body[data-theme='dark'] .hljs-deletion {
   border: 3px solid var(--button-bg);
   border-radius: 32px;
   max-width: 100%;
-  overflow: hidden;
+  overflow: visible;
   margin-bottom: 10%;
 }
 
@@ -1244,7 +1244,7 @@ body[data-theme='dark'] .hljs-deletion {
   border-bottom-left-radius: 0px;
   cursor: pointer;
   transition: background var(--chat--transition-duration) ease;
-  scale: 1.01;
+  scale: 1.02;
   position: absolute;
   top: 0%;
   right: 0%;
@@ -1693,6 +1693,16 @@ body[data-theme='dark'] .hljs-deletion {
     padding-left: 60px;
     padding-top: 14px;
     padding-bottom: 14px;
+  }
+
+  /* Ask AI section style */
+  .ask-ai {
+    background: rgba(255, 255, 255, 0.9);
+    border: 3px solid var(--button-bg);
+    border-radius: 32px;
+    max-width: 100%;
+    overflow: visible;
+    margin-bottom: 10%;
   }
 }
 
