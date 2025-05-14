@@ -41,11 +41,17 @@ export function setupToggleButton() {
   chatToggleButton.setAttribute('aria-label', 'Chat Now');
 
   // Handle chat open/close
-  chatToggleButton.addEventListener('click', () => {
+  chatToggleButton.addEventListener('click', function(event) {
+    // Prevent event propagation to stop any other handlers
+    event.stopPropagation();
+    event.preventDefault();
+    
+    console.log('Toggle button clicked');
     manualClicked = true;
     const chatWindow = document.querySelector('#n8n-chat-widget-2 .chat-window');
     
-    if (chatWindow.style.display === 'none') {
+    if (!chatOpened) {
+      console.log('Opening chat window');
       // Opening chat
       chatWindow.style.display = 'block';
       chatOpened = true;
@@ -53,7 +59,13 @@ export function setupToggleButton() {
         overlay.style.display = 'block';
       }
       centerChatWindow();
+      
+      // This ensures no click events get triggered immediately after opening
+      setTimeout(() => {
+        console.log('Chat window opened and centered');
+      }, 100);
     } else {
+      console.log('Closing chat window');
       // Closing chat
       chatWindow.style.display = 'none';
       chatOpened = false;
@@ -65,15 +77,35 @@ export function setupToggleButton() {
 
   // Close chat when overlay is clicked
   if (overlay) {
-    overlay.addEventListener('click', () => {
+    overlay.addEventListener('click', (event) => {
+      // Prevent propagation in case there are other click handlers
+      event.stopPropagation();
+      
+      console.log('Overlay clicked');
       const chatWindow = document.querySelector('#n8n-chat-widget-2 .chat-window');
-      if (chatWindow && chatWindow.style.display !== 'none') {
+      if (chatWindow && chatOpened) {
+        console.log('Closing chat window from overlay click');
         chatWindow.style.display = 'none';
         chatOpened = false;
         overlay.style.display = 'none';
       }
     });
   }
+
+  // Prevent document click from closing the chat
+  document.addEventListener('click', function(event) {
+    const chatWindow = document.querySelector('#n8n-chat-widget-2 .chat-window');
+    if (chatOpened && chatWindow && !chatWindow.contains(event.target) && !chatToggleButton.contains(event.target)) {
+      // Do not automatically close when clicking outside
+      // Only close when clicking the overlay or toggle button
+      if (overlay && overlay.contains(event.target)) {
+        console.log('Clicked outside chat window on overlay');
+      } else {
+        console.log('Clicked outside chat window, but not closing');
+        event.stopPropagation();
+      }
+    }
+  }, true);
 
   // Hide loading animation after a short delay
   setTimeout(() => {
