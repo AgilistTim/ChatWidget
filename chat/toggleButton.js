@@ -26,20 +26,38 @@ export function setupToggleButton() {
   // Get the base URL for assets
   const baseUrl = window.location.origin;
 
+  // Fix the chat widget wrapper positioning
+  const chatWindowWrapper = document.querySelector('#n8n-chat-widget-2 .chat-window-wrapper');
+  if (chatWindowWrapper) {
+    Object.assign(chatWindowWrapper.style, {
+      position: 'fixed',
+      bottom: '20px',
+      right: '20px',
+      zIndex: '9999',
+    });
+  }
+
+  // Apply initial blue gradient styling
   Object.assign(chatToggleButton.style, {
-    background: 'linear-gradient(to left, #F9B04B, #C97F01, #A05A00)',
-    width: '220px',
-    height: '64px',
+    background: 'linear-gradient(to right, #6ebcff, #3f86ff, #1a50e0)',
+    width: '180px',
+    height: '60px',
     border: 'none',
-    borderRadius: '32px',
-    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+    borderRadius: '30px',
+    boxShadow: 'rgba(0, 0, 0, 0.15) 0px 5px 15px',
     color: 'white',
     justifyContent: 'center',
     flexDirection: 'row',
+    fontWeight: '600',
+    fontSize: '18px',
+    position: 'absolute',
+    bottom: '20px',
+    right: '20px',
   });
+  
   chatToggleButton.innerHTML = `
-    <span style="margin-right: 0.5em; font-size: 1em;">Make an Enquiry</span>
-    <img src="${baseUrl}/assets/chat-message-icon-svg.svg" alt="Chat Icon" style="width: 1.5em; height: 1.5em;" />
+    <span style="margin-right: 10px;">Chat Now</span>
+    <img src="${baseUrl}/assets/chat-message-icon-svg.svg" alt="Chat Icon" style="width: 24px; height: 24px;" />
   `;
 
   chatToggleButton.addEventListener('click', () => {
@@ -50,35 +68,36 @@ export function setupToggleButton() {
     overlay.style.display = chatOpened ? 'block' : 'none';
 
     if (chatOpened) {
-      centerChatWindow(); // Function to center chat window when chatOpened is true
+      centerChatWindow(); // Center chat window when opened
       Object.assign(chatToggleButton.style, {
-        backgroundImage: `url('${baseUrl}/assets/delete.png')`,
-        width: '55px',
-        height: '55px',
-        border: '5px solid #C97F01',
+        background: 'white',
+        width: '44px',
+        height: '44px',
+        border: '2px solid #3f86ff',
         borderRadius: '50%',
-        backgroundColor: 'white',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundSize: 'contain',
+        boxShadow: 'rgba(0, 0, 0, 0.1) 0px 3px 10px',
         padding: '0',
       });
-      chatToggleButton.innerHTML = '';
+      chatToggleButton.innerHTML = `
+        <img src="${baseUrl}/assets/close-icon.svg" alt="Close" style="width: 16px; height: 16px;" />
+      `;
     } else {
       Object.assign(chatToggleButton.style, {
-        background: 'linear-gradient(to left, #F9B04B, #C97F01, #A05A00)',
-        width: '220px',
-        height: '64px',
+        background: 'linear-gradient(to right, #6ebcff, #3f86ff, #1a50e0)',
+        width: '180px',
+        height: '60px',
         border: 'none',
-        borderRadius: '32px',
-        boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+        borderRadius: '30px',
+        boxShadow: 'rgba(0, 0, 0, 0.15) 0px 5px 15px',
         color: 'white',
         justifyContent: 'center',
         flexDirection: 'row',
+        fontWeight: '600',
+        fontSize: '18px',
       });
       chatToggleButton.innerHTML = `
-        <span style="margin-right: 10px;">Make an Enquiry</span>
-        <img src="${baseUrl}/assets/chat-message-icon-svg.svg" alt="Chat Icon" style="width: 30px; height: 30px;" />
+        <span style="margin-right: 10px;">Chat Now</span>
+        <img src="${baseUrl}/assets/chat-message-icon-svg.svg" alt="Chat Icon" style="width: 24px; height: 24px;" />
       `;
     }
   });

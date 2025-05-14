@@ -27,21 +27,21 @@ export async function getInitialMessages() {
           'chat-message-typing',
           'chat-message-typing-animation-bouncing'
         );
-        message.innerHTML = `<p style="margin: 0; font-style: italic;">*We may store personal data and use it to contact you to support your dental needs.See <a href="https://www.sharplesdental.co.uk/privacy-policy" target="_blank" style="color: inherit; text-decoration: underline;">Privacy Policy</a>* </p>`;
+        message.innerHTML = `<p style="margin: 0; font-style: italic;">*Privacy Notice: We may use your information to improve your experience. See our <a href="#" target="_blank" style="color: inherit; text-decoration: underline;">Privacy Policy</a> for details.*</p>`;
 
         // First message: typing indicator
         message2.appendChild(typingDiv2);
 
         if (
           chatMessagesList &&
-          chatMessagesList.firstChild.nextSibling.nextSibling
+          chatMessagesList.firstChild.nextSibling
         ) {
           chatMessagesList.insertBefore(
             message2,
             chatMessagesList.firstChild.nextSibling
           );
         }
-      }, 3500);
+      }, 1500);
 
       //  Replace typing in second message
       setTimeout(() => {
@@ -50,9 +50,8 @@ export async function getInitialMessages() {
           'chat-message-typing',
           'chat-message-typing-animation-bouncing'
         );
-        message2.innerHTML = `<p style="margin: 0"> Hello, Welcome to Sharples Dental your local trusted dentist 😀
-         I’m David, here to help you with your enquiry </p>`;
-      }, 4500);
+        message2.innerHTML = `<p style="margin: 0">Hey there! 👋 I'm your AI assistant. How can I help you today?</p>`;
+      }, 2500);
 
       // Show canned message options and enable scroll-Y automatically
       setTimeout(() => {
@@ -67,7 +66,7 @@ export async function getInitialMessages() {
         }
 
         chatWindow.scrollTop = chatWindow.scrollHeight;
-      }, 5000);
+      }, 3500);
 
       //grid canned-Messages button
       const buttons = cannedMsgDiv.querySelectorAll(

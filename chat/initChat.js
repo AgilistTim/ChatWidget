@@ -17,6 +17,26 @@ export function initChat(sessionId) {
         sessionId,
         chatInput: 'Hello! How can I help?',
       });
+      
+      // Add footer links after chat is initialized
+      setTimeout(() => {
+        const chatFooter = document.querySelector('#n8n-chat-widget-2 .chat-footer');
+        if (chatFooter) {
+          const footerLinks = document.createElement('div');
+          footerLinks.className = 'chat-footer-links';
+          footerLinks.innerHTML = `
+            <a href="#" target="_blank">Contact</a>
+            <a href="#" target="_blank">Legal</a>
+          `;
+          chatFooter.parentNode.insertBefore(footerLinks, chatFooter.nextSibling);
+        }
+        
+        // Update textarea placeholder
+        const textArea = document.querySelector('#n8n-chat-widget-2 textarea');
+        if (textArea) {
+          textArea.placeholder = 'Type your question...';
+        }
+      }, 1000);
     },
     i18n: {
       en: {
