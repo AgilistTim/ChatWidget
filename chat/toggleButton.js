@@ -26,90 +26,57 @@ export function setupToggleButton() {
   // Get the base URL for assets
   const baseUrl = window.location.origin;
 
-  // Fix the chat widget wrapper positioning
-  const chatWindowWrapper = document.querySelector('#n8n-chat-widget-2 .chat-window-wrapper');
-  if (chatWindowWrapper) {
-    Object.assign(chatWindowWrapper.style, {
-      position: 'fixed',
-      bottom: '20px',
-      right: '20px',
-      zIndex: '9999',
+  // Update the toggle button with our custom icon
+  const toggleIcon = chatToggleButton.querySelector('svg');
+  if (toggleIcon) {
+    toggleIcon.innerHTML = `<circle cx="12" cy="12" r="11" fill="#3f86ff" />
+    <path fill="white" d="M12 3c5.5 0 10 3.58 10 8s-4.5 8-10 8c-1.24 0-2.43-.18-3.53-.5C5.55 21 2 21 2 21c2.33-2.33 2.7-3.9 2.75-4.5C3.05 15.07 2 13.13 2 11c0-4.42 4.5-8 10-8"></path>`;
+    toggleIcon.setAttribute('viewBox', '0 0 24 24');
+    toggleIcon.setAttribute('width', '32');
+    toggleIcon.setAttribute('height', '32');
+    toggleIcon.style.display = 'block';
+  }
+
+  // Modify toggle button text if needed
+  chatToggleButton.setAttribute('aria-label', 'Chat Now');
+
+  // Handle chat open/close
+  chatToggleButton.addEventListener('click', () => {
+    manualClicked = true;
+    const chatWindow = document.querySelector('#n8n-chat-widget-2 .chat-window');
+    
+    if (chatWindow.style.display === 'none') {
+      // Opening chat
+      chatWindow.style.display = 'block';
+      chatOpened = true;
+      if (overlay) {
+        overlay.style.display = 'block';
+      }
+      centerChatWindow();
+    } else {
+      // Closing chat
+      chatWindow.style.display = 'none';
+      chatOpened = false;
+      if (overlay) {
+        overlay.style.display = 'none';
+      }
+    }
+  });
+
+  // Close chat when overlay is clicked
+  if (overlay) {
+    overlay.addEventListener('click', () => {
+      const chatWindow = document.querySelector('#n8n-chat-widget-2 .chat-window');
+      if (chatWindow && chatWindow.style.display !== 'none') {
+        chatWindow.style.display = 'none';
+        chatOpened = false;
+        overlay.style.display = 'none';
+      }
     });
   }
 
-  // Apply initial blue gradient styling
-  Object.assign(chatToggleButton.style, {
-    background: 'linear-gradient(to right, #6ebcff, #3f86ff, #1a50e0)',
-    width: '180px',
-    height: '60px',
-    border: 'none',
-    borderRadius: '30px',
-    boxShadow: 'rgba(0, 0, 0, 0.15) 0px 5px 15px',
-    color: 'white',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    fontWeight: '600',
-    fontSize: '18px',
-    position: 'absolute',
-    bottom: '20px',
-    right: '20px',
-  });
-  
-  chatToggleButton.innerHTML = `
-    <span style="margin-right: 10px;">Chat Now</span>
-    <img src="${baseUrl}/assets/chat-message-icon-svg.svg" alt="Chat Icon" style="width: 24px; height: 24px;" />
-  `;
-
-  chatToggleButton.addEventListener('click', () => {
-    manualClicked = true;
-    chatOpened = !chatOpened;
-    
-    // Toggle overlay visibility
-    overlay.style.display = chatOpened ? 'block' : 'none';
-
-    if (chatOpened) {
-      centerChatWindow(); // Center chat window when opened
-      Object.assign(chatToggleButton.style, {
-        background: 'white',
-        width: '44px',
-        height: '44px',
-        border: '2px solid #3f86ff',
-        borderRadius: '50%',
-        boxShadow: 'rgba(0, 0, 0, 0.1) 0px 3px 10px',
-        padding: '0',
-      });
-      chatToggleButton.innerHTML = `
-        <img src="${baseUrl}/assets/close-icon.svg" alt="Close" style="width: 16px; height: 16px;" />
-      `;
-    } else {
-      Object.assign(chatToggleButton.style, {
-        background: 'linear-gradient(to right, #6ebcff, #3f86ff, #1a50e0)',
-        width: '180px',
-        height: '60px',
-        border: 'none',
-        borderRadius: '30px',
-        boxShadow: 'rgba(0, 0, 0, 0.15) 0px 5px 15px',
-        color: 'white',
-        justifyContent: 'center',
-        flexDirection: 'row',
-        fontWeight: '600',
-        fontSize: '18px',
-      });
-      chatToggleButton.innerHTML = `
-        <span style="margin-right: 10px;">Chat Now</span>
-        <img src="${baseUrl}/assets/chat-message-icon-svg.svg" alt="Chat Icon" style="width: 24px; height: 24px;" />
-      `;
-    }
-  });
-
+  // Hide loading animation after a short delay
   setTimeout(() => {
-    document.body.removeChild(loadingAnimation);
-    if (!manualClicked && chatToggleButton) {
-      chatToggleButton.click();
-      overlay.style.display = 'block';
-      chatOpened = true;
-      centerChatWindow();
-      sessionStorage.setItem('chatAutoOpened', 'true');
-    }
-  }, 2500);
+    loadingAnimation.style.display = 'none';
+  }, 1000);
 }

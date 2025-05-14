@@ -1147,29 +1147,15 @@ body[data-theme='dark'] .hljs-deletion {
   border-radius: 24px;
   font-size: 0.95em;
   line-height: 1.4;
+  margin-bottom: 10px;
 }
 
 #n8n-chat-widget-2 .chat-message.chat-message-from-bot {
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  padding: 12px 15px 12px 60px !important; /* Increased left padding for avatar */
+  padding: 12px 15px;
   margin-right: auto;
-  position: relative;
-  min-height: 50px;
-}
-
-#n8n-chat-widget-2 .chat-message.chat-message-from-bot::before {
-  content: "";
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: url('assets/chat-message-icon-svg.svg') no-repeat center center;
-  background-size: cover;
-  background-color: #4d7eff;
 }
 
 #n8n-chat-widget-2 .chat-message.chat-message-from-user {
@@ -1273,273 +1259,25 @@ body[data-theme='dark'] .hljs-deletion {
 #n8n-chat-widget-2 .chat-window-wrapper .chat-window-toggle {
   width: 220px;
   height: var(--chat--toggle--height);
-  font-family: 'Boxly', sans-serif;
   border-radius: var(--chat--toggle--border-radius);
-  /* 
-          background-image: url("https://github.com/RickCBA/widget-centered/blob/main/Alan%20Toggle%20Button2.png?raw=true"); */
+  background-image: url("http://closedby.ai/wp-content/uploads/2025/04/Window-Toggle-button-Chat-Niw.png");
   background-size: cover;
   background-repeat: no-repeat;
   border: none;
   outline: none;
   cursor: pointer;
-  display: flex;
-  z-index: 10002;
   flex-direction: row-reverse;
   justify-content: flex-start;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
-  box-shadow: rgba(59, 68, 164, 0.31) 2px 4px 28px 0px;
-  animation: slideButton 1.5s ease 0s 1 normal forwards running !important;
-}
-
-#n8n-chat-widget-2 .chat-window-wrapper .chat-window-toggle:hover {
-  background-image: url('https://cdn.jsdelivr.net/gh/RickCBA/widget-centered@main/Alan%20Toggle%20Button2.png');
-  /* Slight lift on hover */
-  transform: translateY(5px);
-  scale: 1.05;
-  transition: all 0.3s linear;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
-}
-
-#n8n-chat-widget-2 .chat-window-wrapper .chat-window-toggle:active {
-  background-image: url('https://cdn.jsdelivr.net/gh/RickCBA/widget-centered@main/Alan%20Toggle%20Button2.png');
-}
-
-#n8n-chat-widget-2 .chat-message-typing .chat-message-typing-body {
-  padding: 10px 0px;
-  animation: slideleft 0.8s ease 0s 1 forwards running;
-}
-
-#n8n-chat-widget-2
-  chat-window
-  chat-window-transition-enter-active
-  chat-window-transition-enter-to {
-  display: none;
-}
-
-#n8n-chat-widget-2 .chat-window-wrapper .chat-window-toggle svg:not(:root) {
-  border-radius: 50%;
-  background: url('https://cdn.jsdelivr.net/gh/RickCBA/widget-centered@main/1image.png')
-    no-repeat center center;
-  background-size: cover;
-  margin-bottom: 48px;
-}
-
-#n8n-chat-widget-2 .chat-window-toggle {
-  position: fixed;
-  bottom: 2em;
-  right: 2rem;
-  z-index: 1000;
-  transition: all 0.3s ease;
-}
-
-#n8n-chat-widget-2 .chat-window-toggle-transition-leave-to {
-  animation-duration: 240s;
-}
-
-#n8n-chat-widget-2 .chat-get-started-footer {
-  display: none;
-}
-
-/* Chat button styling */
-#n8n-chat-widget-2 .chat-button {
-  order: 2;
   position: relative;
-  background-color: var(--button-bg);
-  color: transparent;
-  border: none;
-  border-radius: 24px;
-  padding: 12px 30px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background 0.15s ease;
-  margin-top: 18px;
 }
 
-#n8n-chat-widget-2 .chat-button:hover {
-  background-color: var(--secondary-lite);
-}
-
-#n8n-chat-widget-2 .chat-button::before {
-  content: 'I agree, Start Chat';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--button-text);
-  font-size: 16px;
-  font-weight: bold;
-  white-space: nowrap;
-}
-
-#n8n-chat-widget-2 .privacy-btn {
-  background: transparent;
-  border: none;
-  color: var(--button-bg);
-  font-size: 14px;
-  text-decoration: underline;
-  cursor: pointer;
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-#n8n-chat-widget-2 .privacy-btn:hover {
-  color: var(--secondary-lite);
-}
-
-/* Conversation starters (canned messages) styling */
-#n8n-chat-widget-2 .my-canned-bot-message .canned-messages-grid {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 10px !important;
-  margin-top: 10px !important;
-  width: 100% !important;
-}
-
-#n8n-chat-widget-2 .my-canned-bot-message .canned-messages-grid button {
-  background-color: #f0f4ff !important;
-  border: 1px solid #e5eaff !important;
-  border-radius: 12px !important;
-  padding: 12px 15px !important;
-  text-align: center !important;
-  color: #333 !important;
-  cursor: pointer !important;
-  transition: background-color 0.2s, transform 0.2s !important;
-  font-family: 'Boxly', sans-serif !important;
-  font-size: 0.9em !important;
-}
-
-#n8n-chat-widget-2 .my-canned-bot-message .canned-messages-grid button:hover {
-  background-color: #e5eaff !important;
-  transform: translateY(-2px) !important;
-}
-
-/* Centered chat window styling */
-.centered-chat {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  width: 80% !important;
-  max-width: 500px !important;
-  height: auto !important;
-  z-index: 10000 !important;
-  padding-bottom: 20px !important;
-}
-
-/* ===== New: Overlay styling ===== */
-.chat-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-  z-index: 9998;
+#n8n-chat-widget-2 .chat-window-wrapper .chat-window-toggle svg {
   display: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
 }
 
-.chat-window-wrapper .chat-window .chat-layout {
-  padding-bottom: 20px;
-  padding-top: 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  height: 100vh;
-  max-height: 100%;
-  overflow: hidden;
-}
-
-.custom-adjacent-refresh-button {
-  position: absolute;
-  top: 2%;
-  left: 105%;
-  transform: translateX(-50%);
-  background: #f5f5f5;
-  border: none;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-  z-index: 1000;
-  border: 2px solid #c97f01;
-  box-shadow: 0px 0px 20px 0px rgb(0, 0, 0, 0.5);
-  animation: slideButton 0.8s ease 0s 1 forwards running;
-}
-
-.custom-adjacent-refresh-button:hover {
-  transition: all 0.5s linear;
-  scale: 1.05;
-}
-
-.loading-animation {
-  width: 45px;
-  aspect-ratio: 1;
-  --c: no-repeat linear-gradient(#000 0 0);
-  background: var(--c) 0% 50%, var(--c) 50% 50%, var(--c) 100% 50%;
-  background-size: 20% 100%;
-  animation: l1 1s infinite linear;
-}
-
-@keyframes l1 {
-  0% {
-    background-size: 20% 100%, 20% 100%, 20% 100%;
-  }
-  33% {
-    background-size: 20% 10%, 20% 100%, 20% 100%;
-  }
-  50% {
-    background-size: 20% 100%, 20% 10%, 20% 100%;
-  }
-  66% {
-    background-size: 20% 100%, 20% 100%, 20% 10%;
-  }
-  100% {
-    background-size: 20% 100%, 20% 100%, 20% 100%;
-  }
-}
-
-@keyframes slideLeft {
-  from {
-    transform: translateY(50%) scale(0.98);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes animateBubble {
-  from {
-    opacity: 0.5;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes messages {
-  from {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+/* Hidden default message icon, use background image instead */
+#n8n-chat-widget-2 .chat-window-toggle path {
+  display: none;
 }
 
 @keyframes slideButton {
@@ -2004,4 +1742,35 @@ body[data-theme='dark'] .hljs-deletion {
 
 .chat-footer-links a:hover {
   text-decoration: underline;
+}
+
+#n8n-chat-widget-2 .chat-message.chat-message-from-bot::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: url("./assets/asset-1-e546cf.svg")
+    no-repeat center center;
+  background-size: cover;
+}
+
+/* Additional toggle button styles */
+#n8n-chat-widget-2 .chat-window-toggle {
+  position: fixed;
+  bottom: 2em;
+  right: 2rem;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+/* Footer styling */
+#n8n-chat-widget-2 .chat-footer {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  margin: 8px;
+  padding: 5px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
 }
