@@ -9,8 +9,6 @@ export function setupToggleButton() {
   let manualClicked = false;
   let chatOpened = false;
 
-  chatToggleButton.style.backgroundImage = 'none';
-
   const loadingAnimation = document.createElement('div');
   loadingAnimation.className = 'loading-animation';
   Object.assign(loadingAnimation.style, {
@@ -26,19 +24,61 @@ export function setupToggleButton() {
   // Get the base URL for assets
   const baseUrl = window.location.origin;
 
-  // Update the toggle button with our custom icon
-  const toggleIcon = chatToggleButton.querySelector('svg');
-  if (toggleIcon) {
-    toggleIcon.innerHTML = `<circle cx="12" cy="12" r="11" fill="#3f86ff" />
-    <path fill="white" d="M12 3c5.5 0 10 3.58 10 8s-4.5 8-10 8c-1.24 0-2.43-.18-3.53-.5C5.55 21 2 21 2 21c2.33-2.33 2.7-3.9 2.75-4.5C3.05 15.07 2 13.13 2 11c0-4.42 4.5-8 10-8"></path>`;
-    toggleIcon.setAttribute('viewBox', '0 0 24 24');
-    toggleIcon.setAttribute('width', '32');
-    toggleIcon.setAttribute('height', '32');
-    toggleIcon.style.display = 'block';
+  // Reset toggle button to initial state (closed chat)
+  function resetToggleButton() {
+    // Apply styling for the chat closed state
+    Object.assign(chatToggleButton.style, {
+      background: 'linear-gradient(to right, #6ebcff, #3f86ff, #1a50e0)',
+      width: '180px',
+      height: '60px',
+      border: 'none',
+      borderRadius: '30px',
+      boxShadow: 'rgba(0, 0, 0, 0.15) 0px 5px 15px',
+      color: 'white',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'row',
+      fontWeight: '600',
+      fontSize: '18px',
+    });
+    
+    // Set the toggle button content
+    chatToggleButton.innerHTML = `
+      <span style="margin-right: 10px;">Chat Now</span>
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <circle cx="12" cy="12" r="11" fill="#ffffff" />
+        <path fill="#3f86ff" d="M12 3c5.5 0 10 3.58 10 8s-4.5 8-10 8c-1.24 0-2.43-.18-3.53-.5C5.55 21 2 21 2 21c2.33-2.33 2.7-3.9 2.75-4.5C3.05 15.07 2 13.13 2 11c0-4.42 4.5-8 10-8" />
+      </svg>
+    `;
   }
-
-  // Modify toggle button text if needed
-  chatToggleButton.setAttribute('aria-label', 'Chat Now');
+  
+  // Set the toggle button to "close" state
+  function setToggleToCloseButton() {
+    // Apply styling for the chat open state (close button)
+    Object.assign(chatToggleButton.style, {
+      background: 'white',
+      width: '44px',
+      height: '44px',
+      border: '2px solid #3f86ff',
+      borderRadius: '50%',
+      boxShadow: 'rgba(0, 0, 0, 0.1) 0px 3px 10px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '0',
+    });
+    
+    // Set close icon
+    chatToggleButton.innerHTML = `
+      <svg viewBox="0 0 24 24" width="16" height="16">
+        <path fill="#3f86ff" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+      </svg>
+    `;
+  }
+  
+  // Initialize the toggle button
+  resetToggleButton();
 
   // Handle chat open/close
   chatToggleButton.addEventListener('click', function(event) {
@@ -60,6 +100,9 @@ export function setupToggleButton() {
       }
       centerChatWindow();
       
+      // Change toggle button to close icon
+      setToggleToCloseButton();
+      
       // This ensures no click events get triggered immediately after opening
       setTimeout(() => {
         console.log('Chat window opened and centered');
@@ -72,6 +115,9 @@ export function setupToggleButton() {
       if (overlay) {
         overlay.style.display = 'none';
       }
+      
+      // Reset toggle button to original state
+      resetToggleButton();
     }
   });
 
@@ -88,24 +134,35 @@ export function setupToggleButton() {
         chatWindow.style.display = 'none';
         chatOpened = false;
         overlay.style.display = 'none';
+        
+        // Reset toggle button to original state
+        resetToggleButton();
       }
     });
   }
 
-  // Prevent document click from closing the chat
+  // Handle clicks outside the chat to close it
   document.addEventListener('click', function(event) {
+    if (!chatOpened) return; // Only process if chat is open
+    
     const chatWindow = document.querySelector('#n8n-chat-widget-2 .chat-window');
-    if (chatOpened && chatWindow && !chatWindow.contains(event.target) && !chatToggleButton.contains(event.target)) {
-      // Do not automatically close when clicking outside
-      // Only close when clicking the overlay or toggle button
-      if (overlay && overlay.contains(event.target)) {
-        console.log('Clicked outside chat window on overlay');
-      } else {
-        console.log('Clicked outside chat window, but not closing');
-        event.stopPropagation();
+    const isClickInsideChat = chatWindow && chatWindow.contains(event.target);
+    const isClickOnToggle = chatToggleButton && chatToggleButton.contains(event.target);
+    const isClickOnOverlay = overlay && overlay.contains(event.target);
+    
+    // If clicked outside both the chat window and the toggle button
+    if (!isClickInsideChat && !isClickOnToggle && !isClickOnOverlay) {
+      console.log('Clicked outside chat, closing');
+      chatWindow.style.display = 'none';
+      chatOpened = false;
+      if (overlay) {
+        overlay.style.display = 'none';
       }
+      
+      // Reset toggle button to original state
+      resetToggleButton();
     }
-  }, true);
+  });
 
   // Hide loading animation after a short delay
   setTimeout(() => {
